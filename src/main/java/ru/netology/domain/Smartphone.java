@@ -3,23 +3,23 @@ package ru.netology.domain;
 import java.util.Objects;
 
 public class Smartphone extends Product{
-    private String manufacturer;
+    private String generator;
 
     public Smartphone() {
         super();
     }
 
-    public Smartphone (int id, String name, int price, String manufacturer) {
+    public Smartphone (int id, String name, int price, String generator) {
         super(id, name, price);
-        this.manufacturer = manufacturer;
+        this.generator = generator;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    public String getGenerator() {
+        return generator;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setGenerator(String generator) {
+        this.generator = generator;
     }
 
     @Override
@@ -28,18 +28,18 @@ public class Smartphone extends Product{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Smartphone that = (Smartphone) o;
-        return Objects.equals(manufacturer, that.manufacturer);
+        return Objects.equals(generator, that.generator);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), manufacturer);
+        return Objects.hash(super.hashCode(), generator);
     }
 
     @Override
     public String toString() {
         return "Smartphone{" +
-                "manufacturer='" + manufacturer + '\'' +
+                "manufacturer='" + generator + '\'' +
                 '}';
     }
 }
