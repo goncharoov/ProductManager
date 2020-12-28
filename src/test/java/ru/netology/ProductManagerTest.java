@@ -71,10 +71,11 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldDeleteById( ) {
+    void shouldRemoveById( ) {
         repository.removeById(1);
         repository.removeById(2);
         Product[] actual = repository.findAll();
         Product[] expected = new Product[]{thirdBook, fourthBook, firstSmartphone, secondSmartphone, thirdSmartphone, fourthSmartphone};
+        assertArrayEquals(expected, actual);
     }
 }
