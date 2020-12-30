@@ -19,7 +19,7 @@ class ProductManagerTest {
     Product thirdBook = new Book(3, "Soft", 500, "Smile");
     Product fourthBook = new Book(4, "Pickle", 1100, "Jacca");
     Product firstSmartphone = new Smartphone(5, "MyPhone", 200, "Lenovo");
-    Product secondSmartphone = new Smartphone(6, "E398", 100, "Moto");
+    Product secondSmartphone = new Smartphone(6, "Sony", 100, "Moto");
     Product thirdSmartphone = new Smartphone(7, "K750i", 500, "Sony");
     Product fourthSmartphone = new Smartphone(8, "iPhone", 300, "Apple");
 
@@ -57,9 +57,9 @@ class ProductManagerTest {
     }
 
     @Test
-    void shouldSearchSmartphoneByGenerator() {
-        Product[] expected = new Product[]{thirdSmartphone};
-        Product[] actual = manager.searchBy("Sony");
+    void shouldSearchByText() {
+        Product[] expected = new Product[]{firstSmartphone};
+        Product[] actual = manager.searchBy("MyPhone");
         assertArrayEquals(expected, actual);
     }
 
@@ -78,4 +78,27 @@ class ProductManagerTest {
         Product[] expected = new Product[]{thirdBook, fourthBook, firstSmartphone, secondSmartphone, thirdSmartphone, fourthSmartphone};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldNotFindAll() {
+        repository.removeById(1);
+        repository.removeById(2);
+        repository.removeById(3);
+        repository.removeById(4);
+        repository.removeById(5);
+        repository.removeById(6);
+        repository.removeById(7);
+        repository.removeById(8);
+        Product[] expected = new Product[]{};
+        Product[] actual = repository.findAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSearchByTextWithTwoMatches() {
+        Product[] expected = new Product[]{secondSmartphone, thirdSmartphone};
+        Product[] actual = manager.searchBy("Sony");
+        assertArrayEquals(expected, actual);
+    }
+
 }
